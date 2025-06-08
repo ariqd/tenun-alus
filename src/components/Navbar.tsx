@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
+// Add font imports at the top of the file
+import '@fontsource/caveat';
+import '@fontsource/arvo';
+
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,7 +21,7 @@ const Navbar: React.FC = () => {
 
   const handleMenuClick = (href: string) => {
     setIsMenuOpen(false);
-    
+
     // Smooth scroll to section
     const element = document.querySelector(href);
     if (element) {
@@ -34,29 +38,30 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-      <nav className="container mx-auto px-4">
+      <nav className="container px-4 mx-auto">
         {/* Top bar with logo */}
         <div className="flex items-center justify-between h-20 border-b">
           {/* Mobile menu button */}
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-gray-600 hover:text-gray-900"
+            className="text-gray-600 lg:hidden hover:text-gray-900"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* Logo - centered */}
-          <div className="flex-1 flex justify-center">
-            <a 
-              href="#home" 
+          <div className="flex justify-center flex-1">
+            <a
+              href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 handleMenuClick('#home');
               }}
-              className="text-3xl font-medium text-amber-700 hover:text-amber-800 transition-colors"
+              className="text-3xl font-medium transition-colors text-tenun hover:text-tenun-600"
             >
-              Tenunalus MAURA
+              <span className="font-['Caveat']">Tenunalus&nbsp;</span>
+              <span className="font-['Arvo'] ml-1">MAURA</span>
             </a>
           </div>
 
@@ -65,7 +70,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex justify-center py-4">
+        <div className="justify-center hidden py-4 lg:flex">
           <div className="flex items-center space-x-12">
             {menuItems.map((item) => (
               <a
@@ -75,7 +80,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleMenuClick(item.href);
                 }}
-                className="text-gray-600 hover:text-amber-700 transition-colors text-sm font-medium cursor-pointer"
+                className="text-sm font-medium text-gray-600 transition-colors cursor-pointer hover:text-tenun"
               >
                 {item.label}
               </a>
@@ -94,7 +99,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleMenuClick(item.href);
                 }}
-                className="block px-4 py-2 text-gray-600 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors cursor-pointer"
+                className="block px-4 py-2 text-gray-600 transition-colors rounded-lg cursor-pointer hover:bg-tenun-50 hover:text-tenun"
               >
                 {item.label}
               </a>
