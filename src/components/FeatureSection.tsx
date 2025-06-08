@@ -2,43 +2,47 @@ import React from 'react';
 
 const FeatureSection: React.FC = () => {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section id="features" className="py-20 bg-white">
+      <div className="container px-4 mx-auto">
+        <div className="grid items-center grid-cols-1 gap-12 md:grid-cols-2">
           <div className="space-y-6">
-            <span className="text-sm font-medium text-gray-500 tracking-wider uppercase">Our Story</span>
-            <h2 className="text-4xl font-medium leading-tight">Preserving Denpasar's Artistic Legacy</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Each piece in the Tenun Alus Maura collection is meticulously handcrafted by skilled artisans in Denpasar, blending traditional     Balinese weaving techniques with contemporary design aesthetics. We work directly with local artisan communities to ensure fair trade practices and to safeguard the authenticity and legacy of Balinese endek weaving.
-
-
+            <span className="text-sm font-medium tracking-wider text-gray-500 uppercase">Our Mission</span>
+            <h2 className="text-4xl font-medium leading-tight">Cultural Sustainability Through Traditional Weaving</h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              We preserve, respect, and promote cultural sustainability through the use of traditional weaving in every product that adds value for customers. Each piece showcases authentic Endek Bali crafted with non-mechanical weaving tools (ATBM), creating a positive impact on culture and the environment through unique, modern, and relevant fashion accessories.
             </p>
+            <div className="p-6 rounded-lg bg-amber-50">
+              <h3 className="mb-3 font-medium text-amber-800">Our Vision</h3>
+              <p className="text-sm leading-relaxed text-amber-700">
+                "Being a catalyst in bringing the beauty and traditions of local wisdom to the global stage, creating a positive impact on culture and the environment through unique, modern, and relevant fashion accessory products."
+              </p>
+            </div>
             <div className="grid grid-cols-3 gap-8 pt-6">
               <div>
-                <p className="text-3xl font-medium mb-2">50+</p>
-                <p className="text-gray-600">Master Artisans</p>
+                <p className="mb-2 text-3xl font-medium">Global</p>
+                <p className="text-gray-600">Market Reach</p>
               </div>
               <div>
-                <p className="text-3xl font-medium mb-2">100%</p>
-                <p className="text-gray-600">Handcrafted</p>
+                <p className="mb-2 text-3xl font-medium">100%</p>
+                <p className="text-gray-600">ATBM Handwoven</p>
               </div>
               <div>
-                <p className="text-3xl font-medium mb-2">25+</p>
-                <p className="text-gray-600">Years Legacy</p>
+                <p className="mb-2 text-3xl font-medium">Cultural</p>
+                <p className="text-gray-600">Sustainability</p>
               </div>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
-            <img 
+            <img
               src="https://www.tenunalus.com/cdn/shop/files/pallavi-biru-kulit.jpg?v=1712915464"
-              alt="Artisan crafting jewelry"
+              alt="Traditional Indonesian weaving process"
               className="w-full rounded-xl"
             />
-            <img 
+            <img
               src="https://www.tenunalus.com/cdn/shop/files/pallavi-orange-kulit.jpg?v=1712915465&width=1445"
-              alt="Traditional Balinese jewelry"
-              className="w-full rounded-xl mt-8"
+              alt="Authentic Endek Bali fabric"
+              className="w-full mt-8 rounded-xl"
             />
           </div>
         </div>

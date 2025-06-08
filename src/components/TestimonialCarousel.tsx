@@ -15,28 +15,28 @@ const testimonials: Testimonial[] = [
     name: "Sarah Chen",
     role: "Interior Designer",
     image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    text: "The craftsmanship of each piece tells a story of tradition and excellence. Absolutely in love with my Songket runner!"
+    text: "The authentic Endek Bali weaving in each piece tells a story of Indonesian heritage. The ATBM craftsmanship is absolutely exceptional!"
   },
   {
     id: 2,
     name: "David Miller",
-    role: "Art Collector",
+    role: "Fashion Collector",
     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    text: "Exceptional quality and attention to detail. Each piece from Tenun Alus is a masterpiece of traditional artistry."
+    text: "Exceptional quality and attention to traditional weaving techniques. Each piece from Tenunalus MAURA is a masterpiece of Indonesian artistry."
   },
   {
     id: 3,
     name: "Emma Thompson",
     role: "Fashion Designer",
     image: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    text: "The blend of traditional techniques with modern design is simply breathtaking. A true celebration of Balinese craft."
+    text: "The blend of traditional Indonesian weaving with modern fashion accessories is simply breathtaking. A true celebration of cultural heritage."
   },
   {
     id: 4,
     name: "Michael Wong",
     role: "Boutique Owner",
     image: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    text: "These pieces have become the highlight of my collection. The authenticity and quality are unmatched."
+    text: "These handcrafted accessories have become the highlight of my collection. The authenticity of Indonesian traditional weaving is unmatched."
   }
 ];
 
@@ -67,30 +67,30 @@ const TestimonialCarousel: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-stone-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-xl mx-auto text-center mb-12">
-          <h2 className="text-2xl font-medium mb-4">Words from Those Who Appreciate True Craft</h2>
-          <p className="text-gray-600">Discover why art enthusiasts and collectors choose Tenun Alus</p>
+    <section id="testimonials" className="py-20 bg-stone-50">
+      <div className="container px-4 mx-auto">
+        <div className="max-w-xl mx-auto mb-12 text-center">
+          <h2 className="mb-4 text-2xl font-medium">Words from Those Who Appreciate Authentic Craft</h2>
+          <p className="text-gray-600">Discover why fashion enthusiasts and collectors choose Tenunalus MAURA for authentic Indonesian weaving</p>
         </div>
 
         <div className="relative">
           <div className="overflow-hidden">
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
             >
               {testimonials.map((testimonial) => (
-                <div 
+                <div
                   key={testimonial.id}
-                  className="w-full md:w-1/3 flex-shrink-0 px-4"
+                  className="flex-shrink-0 w-full px-4 md:w-1/3"
                 >
-                  <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="p-6 transition-shadow duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
                     <div className="flex flex-col items-center text-center">
-                      <img 
-                        src={testimonial.image} 
+                      <img
+                        src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-20 h-20 rounded-full object-cover mb-4"
+                        className="object-cover w-20 h-20 mb-4 rounded-full"
                       />
                       <div className="flex mb-4">
                         {[...Array(5)].map((_, i) => (
@@ -99,7 +99,7 @@ const TestimonialCarousel: React.FC = () => {
                           </svg>
                         ))}
                       </div>
-                      <p className="text-gray-600 mb-4">{testimonial.text}</p>
+                      <p className="mb-4 text-gray-600">{testimonial.text}</p>
                       <h3 className="font-medium">{testimonial.name}</h3>
                       <p className="text-sm text-gray-500">{testimonial.role}</p>
                     </div>
@@ -109,15 +109,15 @@ const TestimonialCarousel: React.FC = () => {
             </div>
           </div>
 
-          <button 
+          <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
+            className="absolute left-0 p-2 transition-shadow -translate-x-4 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 hover:shadow-lg"
           >
             <ChevronLeft size={24} />
           </button>
-          <button 
+          <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
+            className="absolute right-0 p-2 transition-shadow translate-x-4 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 hover:shadow-lg"
           >
             <ChevronRight size={24} />
           </button>
@@ -127,9 +127,8 @@ const TestimonialCarousel: React.FC = () => {
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                  currentIndex === i ? 'bg-amber-700' : 'bg-gray-300'
-                }`}
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentIndex === i ? 'bg-amber-700' : 'bg-gray-300'
+                  }`}
               />
             ))}
           </div>

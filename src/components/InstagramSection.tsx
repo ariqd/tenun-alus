@@ -10,9 +10,9 @@ const images = [
 
 const InstagramSection: React.FC = () => {
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
+    <section id="gallery" className="py-16">
+      <div className="container px-4 mx-auto">
+        <div className="mb-8 text-center">
           <p className="text-sm text-gray-600">Follow us on</p>
           <a href="https://instagram.com" className="text-lg font-medium hover:text-gray-600">
             Instagram @tenunalus.indonesia
@@ -20,15 +20,15 @@ const InstagramSection: React.FC = () => {
         </div>
         <div className="grid grid-cols-5 gap-4">
           {images.map((image, index) => (
-            <a 
+            <a
               key={index}
               href="https://instagram.com"
-              className="aspect-square overflow-hidden"
+              className="overflow-hidden aspect-square"
             >
-              <img 
+              <img
                 src={image}
                 alt={`Instagram post ${index + 1}`}
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
               />
             </a>
           ))}

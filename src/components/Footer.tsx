@@ -3,13 +3,13 @@ import React from 'react';
 const Footer: React.FC = () => {
   return (
     <footer className="py-16 border-t">
-      <div className="container mx-auto px-4">
+      <div className="container px-4 mx-auto">
         <div className="grid grid-cols-12 gap-8">
           {/* Left column - About section */}
-          <div className="col-span-12 lg:col-span-4 ml-10">
-            <h3 className="text-xl font-medium mb-6">About Tenun Alus</h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              We're dedicated to preserving and sharing the rich heritage of Balinese craftsmanship through our handcrafted accessories. Each piece tells a story of tradition, innovation, and sustainable artistry.
+          <div className="col-span-12 ml-10 lg:col-span-4">
+            <h3 className="mb-6 text-xl font-medium">About Tenunalus MAURA</h3>
+            <p className="mb-6 leading-relaxed text-gray-600">
+              We're a catalyst in bringing the beauty and traditions of Indonesian local wisdom to the global stage. Through authentic Endek Bali and traditional ATBM weaving techniques, we create unique, modern, and relevant fashion accessories that preserve cultural sustainability while making a positive environmental impact.
             </p>
             <div className="space-y-4">
               <div className="flex items-start">
@@ -29,37 +29,40 @@ const Footer: React.FC = () => {
 
           {/* Right columns */}
           <div className="col-span-12 lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               <div>
-                <h3 className="font-medium mb-4">Customer Care</h3>
+                <h3 className="mb-4 font-medium">Customer Care</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li><a href="/faq" className="hover:text-amber-700 transition-colors">FAQ</a></li>
-                  <li><a href="/shipping" className="hover:text-amber-700 transition-colors">Shipping & Returns</a></li>
-                  <li><a href="/contact" className="hover:text-amber-700 transition-colors">Contact Us</a></li>
-                  <li><a href="/terms" className="hover:text-amber-700 transition-colors">Terms & Conditions</a></li>
-                  <li><a href="/privacy" className="hover:text-amber-700 transition-colors">Privacy Policy</a></li>
+                  <li><a href="/faq" className="transition-colors hover:text-amber-700">FAQ</a></li>
+                  <li><a href="/shipping" className="transition-colors hover:text-amber-700">Shipping & Returns</a></li>
+                  <li><a href="/contact" className="transition-colors hover:text-amber-700">Contact Us</a></li>
+                  <li><a href="/terms" className="transition-colors hover:text-amber-700">Terms & Conditions</a></li>
+                  <li><a href="/privacy" className="transition-colors hover:text-amber-700">Privacy Policy</a></li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-medium mb-4">Visit Our Store</h3>
-                <p>Jalan Raya Ubud No. 88</p>
-                <p>Denpasar, Bali 80571</p>
+                <h3 className="mb-4 font-medium">Store</h3>
+                <div className="space-y-2 text-sm text-gray-600">
+                  <p>Jalan Raya Ubud No. 88</p>
+                  <p>Denpasar, Bali 80571</p>
+                  <p>Indonesia</p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-medium mb-4">Contact</h3>
+                <h3 className="mb-4 font-medium">Contact</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li><a href="/whatsapp" className="hover:text-amber-700 transition-colors">WhatsApp</a></li>
-                  <li><a href="/instagram" className="hover:text-amber-700 transition-colors">Instagram</a></li>
-                  <li><a href="/facebook" className="hover:text-amber-700 transition-colors">Facebook</a></li>
-                  <li><a href="/email" className="hover:text-amber-700 transition-colors">Email</a></li>
+                  <li><a href="/whatsapp" className="transition-colors hover:text-amber-700">WhatsApp</a></li>
+                  <li><a href="/instagram" className="transition-colors hover:text-amber-700">Instagram</a></li>
+                  <li><a href="/facebook" className="transition-colors hover:text-amber-700">Facebook</a></li>
+                  <li><a href="/email" className="transition-colors hover:text-amber-700">Email</a></li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-medium mb-4">Business Hours</h3>
-                <div className="text-sm text-gray-600 space-y-3">
+                <h3 className="mb-4 font-medium">Business Hours</h3>
+                <div className="space-y-3 text-sm text-gray-600">
                   <div>
                     <p className="font-medium">Monday - Friday</p>
                     <p>09:00 - 17:00</p>
@@ -77,9 +80,9 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        <div className="mt-12 pt-8 border-t text-center text-sm text-gray-600">
-          <p>© {new Date().getFullYear()} Tenun Alus. All rights reserved.</p>
+
+        <div className="pt-8 mt-12 text-sm text-center text-gray-600 border-t">
+          <p>© {new Date().getFullYear()} Tenunalus MAURA. All rights reserved.</p>
         </div>
       </div>
     </footer>
