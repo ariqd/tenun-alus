@@ -1,0 +1,386 @@
+import React, { useState } from 'react';
+import { Filter, ChevronDown } from 'lucide-react';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+  dimensions: string[];
+  colors: string[];
+  technique: string;
+  productionTime: string;
+  careInstructions: string[];
+}
+
+const initialProducts: Product[] = [
+  {
+    id: 1,
+    name: "Mukuta Hat - Navy Stripes",
+    description: "Classic navy striped hat featuring traditional Indonesian weaving patterns. Perfect blend of contemporary style and cultural heritage.",
+    price: 89.00,
+    image: "/products/hat- (1).jpg",
+    category: "Mukuta Hat",
+    dimensions: ["One size fits most", "Adjustable strap"],
+    colors: ["Navy Blue", "White"],
+    technique: "Traditional stripe weaving with modern finishing",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Hand wash only",
+      "Air dry in shade",
+      "Store in cool, dry place",
+      "Avoid direct sunlight"
+    ]
+  },
+  {
+    id: 2,
+    name: "Mukuta Hat - Red Stripes",
+    description: "Bold red and black striped hat combining traditional weaving with modern design. A statement piece for the fashion-forward.",
+    price: 89.00,
+    image: "/products/hat- (2).jpg",
+    category: "Mukuta Hat",
+    dimensions: ["One size fits most", "Adjustable strap"],
+    colors: ["Red", "Black"],
+    technique: "Traditional stripe weaving with modern finishing",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Hand wash only",
+      "Air dry in shade",
+      "Store in cool, dry place",
+      "Avoid direct sunlight"
+    ]
+  },
+  {
+    id: 3,
+    name: "Mukuta Hat - Multi Stripe",
+    description: "Vibrant multi-colored striped hat showcasing intricate Indonesian weaving patterns. A perfect fusion of tradition and contemporary style.",
+    price: 99.00,
+    image: "/products/hat- (3).jpg",
+    category: "Mukuta Hat",
+    dimensions: ["One size fits most", "Adjustable strap"],
+    colors: ["Blue", "Orange", "Yellow", "Green"],
+    technique: "Complex multi-color weaving with traditional patterns",
+    productionTime: "3-4 weeks",
+    careInstructions: [
+      "Hand wash only",
+      "Air dry in shade",
+      "Store in cool, dry place",
+      "Avoid direct sunlight"
+    ]
+  },
+  {
+    id: 4,
+    name: "Mukuta Hat - Purple Fusion",
+    description: "Elegant purple hat with intricate multi-colored stripe detail. A sophisticated blend of traditional craftsmanship and modern aesthetics.",
+    price: 99.00,
+    image: "/products/hat- (4).jpg",
+    category: "Mukuta Hat",
+    dimensions: ["One size fits most", "Adjustable strap"],
+    colors: ["Purple", "Green", "Blue", "Gold"],
+    technique: "Advanced pattern weaving with metallic thread accents",
+    productionTime: "3-4 weeks",
+    careInstructions: [
+      "Hand wash only",
+      "Air dry in shade",
+      "Store in cool, dry place",
+      "Avoid direct sunlight"
+    ]
+  },
+  {
+    id: 5,
+    name: "Jagadhita Tote - Honey Gold",
+    description: "Elegant tote bag featuring traditional striped patterns in honey gold with blue accents. Perfect for daily use with ample storage.",
+    price: 129.00,
+    image: "/products/Jagadhita Bag -  (1).jpg",
+    category: "Jagadhita Bag",
+    dimensions: ["40cm x 35cm x 12cm"],
+    colors: ["Honey Gold", "Blue", "Black"],
+    technique: "Traditional weaving with modern canvas combination",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Spot clean with damp cloth",
+      "Store in dust bag when not in use",
+      "Avoid exposure to rain",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 6,
+    name: "Jagadhita Tote - Burgundy Ikat",
+    description: "Sophisticated burgundy tote featuring traditional ikat patterns. Combines elegance with functionality.",
+    price: 139.00,
+    image: "/products/Jagadhita Bag -  (2).jpg",
+    category: "Jagadhita Bag",
+    dimensions: ["40cm x 35cm x 12cm"],
+    colors: ["Burgundy", "Black", "Gold"],
+    technique: "Ikat weaving with canvas construction",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Spot clean with damp cloth",
+      "Store in dust bag when not in use",
+      "Avoid exposure to rain",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 7,
+    name: "Jagadhita Tote - Navy Diamond",
+    description: "Classic navy tote with traditional diamond ikat pattern. Perfect blend of traditional artistry and modern functionality.",
+    price: 139.00,
+    image: "/products/Jagadhita Bag -  (3).jpg",
+    category: "Jagadhita Bag",
+    dimensions: ["40cm x 35cm x 12cm"],
+    colors: ["Navy", "Yellow", "Orange", "Green"],
+    technique: "Diamond ikat weaving with canvas base",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Spot clean with damp cloth",
+      "Store in dust bag when not in use",
+      "Avoid exposure to rain",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 8,
+    name: "Jagadhita Tote - Ruby Red",
+    description: "Vibrant ruby red tote with traditional striped pattern. Features convenient front pockets and durable construction.",
+    price: 129.00,
+    image: "/products/Jagadhita Bag -  (4).jpg",
+    category: "Jagadhita Bag",
+    dimensions: ["40cm x 35cm x 12cm"],
+    colors: ["Ruby Red", "Gold", "Purple"],
+    technique: "Traditional stripe weaving with modern canvas blend",
+    productionTime: "2-3 weeks",
+    careInstructions: [
+      "Spot clean with damp cloth",
+      "Store in dust bag when not in use",
+      "Avoid exposure to rain",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 9,
+    name: "Talina Strap - Burgundy Diamond",
+    description: "Luxurious bag strap featuring traditional diamond patterns in rich burgundy and olive tones. Perfect accessory to elevate any bag.",
+    price: 79.00,
+    image: "/products/Talina -  (1).jpg",
+    category: "Talina",
+    dimensions: ["Length: 120cm", "Width: 5cm"],
+    colors: ["Burgundy", "Olive", "White", "Black"],
+    technique: "Traditional diamond pattern weaving with modern hardware",
+    productionTime: "1-2 weeks",
+    careInstructions: [
+      "Spot clean only",
+      "Store flat",
+      "Avoid exposure to moisture",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 10,
+    name: "Talina Strap - Noir Elegance",
+    description: "Sophisticated bag strap with classic black and burgundy geometric patterns. Features premium brass hardware.",
+    price: 79.00,
+    image: "/products/Talina -  (2).jpg",
+    category: "Talina",
+    dimensions: ["Length: 120cm", "Width: 5cm"],
+    colors: ["Black", "Burgundy", "White"],
+    technique: "Geometric pattern weaving with brass hardware",
+    productionTime: "1-2 weeks",
+    careInstructions: [
+      "Spot clean only",
+      "Store flat",
+      "Avoid exposure to moisture",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 11,
+    name: "Talina Strap - Emerald Fusion",
+    description: "Striking bag strap featuring emerald green and gold geometric patterns. A perfect blend of traditional motifs and contemporary style.",
+    price: 89.00,
+    image: "/products/Talina -  (3).jpg",
+    category: "Talina",
+    dimensions: ["Length: 120cm", "Width: 5cm"],
+    colors: ["Emerald Green", "Gold", "White", "Black"],
+    technique: "Complex geometric weaving with metallic accents",
+    productionTime: "1-2 weeks",
+    careInstructions: [
+      "Spot clean only",
+      "Store flat",
+      "Avoid exposure to moisture",
+      "Keep away from direct sunlight"
+    ]
+  },
+  {
+    id: 12,
+    name: "Talina Strap - Forest Medallion",
+    description: "Elegant bag strap with forest green and gold medallion patterns. Features premium brass hardware and adjustable length.",
+    price: 89.00,
+    image: "/products/Talina -  (4).jpg",
+    category: "Talina",
+    dimensions: ["Length: 120cm", "Width: 5cm"],
+    colors: ["Forest Green", "Gold", "White", "Black"],
+    technique: "Medallion pattern weaving with adjustable hardware",
+    productionTime: "1-2 weeks",
+    careInstructions: [
+      "Spot clean only",
+      "Store flat",
+      "Avoid exposure to moisture",
+      "Keep away from direct sunlight"
+    ]
+  }
+];
+
+const categories = [
+  "All",
+  "Mukuta Hat",
+  "Talina",
+  "Hobler Holder",
+  "Mawra Bag",
+  "Sangrianusa Holder",
+  "Karllet Wallet",
+  "Kirana Strap",
+  "Carriena Bag",
+  "Jagadhita Bag"
+];
+
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="aspect-square overflow-hidden">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+      
+      <div className="p-6">
+        <div className="mb-4">
+          <p className="text-sm text-amber-700 mb-2">{product.category}</p>
+          <h3 className="text-xl font-medium mb-2">{product.name}</h3>
+          <p className="text-2xl font-medium text-gray-900">${product.price.toFixed(2)}</p>
+        </div>
+
+        <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden'}`}>
+          <p className="text-gray-600">{product.description}</p>
+          
+          <div>
+            <h4 className="font-medium mb-2">Dimensions:</h4>
+            <ul className="text-sm text-gray-600">
+              {product.dimensions.map((dim, index) => (
+                <li key={index}>{dim}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Colors:</h4>
+            <ul className="text-sm text-gray-600">
+              {product.colors.map((color, index) => (
+                <li key={index}>{color}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Technique:</h4>
+            <p className="text-sm text-gray-600">{product.technique}</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Production Time:</h4>
+            <p className="text-sm text-gray-600">{product.productionTime}</p>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Care Instructions:</h4>
+            <ul className="text-sm text-gray-600 list-disc list-inside">
+              {product.careInstructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-4 text-amber-700 hover:text-amber-800 font-medium text-sm flex items-center"
+        >
+          {isExpanded ? 'Show less' : 'Show details'}
+          <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const FeaturedProducts: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const filteredProducts = initialProducts.filter(product => 
+    selectedCategory === "All" || product.category === selectedCategory
+  );
+
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="max-w-xl mx-auto text-center mb-12">
+          <h2 className="text-3xl font-medium mb-4">Product Catalogue</h2>
+          <p className="text-gray-600">Discover our handpicked selection of traditional textiles, each piece telling a unique story of Indonesian heritage</p>
+        </div>
+
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all"
+              >
+                <Filter size={20} className="text-amber-700" />
+                <span>Filter by Category: {selectedCategory}</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-10">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        setSelectedCategory(category);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 hover:bg-amber-50 transition-colors ${
+                        selectedCategory === category ? 'bg-amber-50 text-amber-700' : 'text-gray-600'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <p className="text-sm text-gray-600">
+              Showing {filteredProducts.length} products
+            </p>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {filteredProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedProducts;
