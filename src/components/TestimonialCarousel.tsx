@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Testimonial {
@@ -44,6 +44,14 @@ const TestimonialCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
   const handlePrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
@@ -51,46 +59,38 @@ const TestimonialCarousel: React.FC = () => {
     setTimeout(() => setIsAnimating(false), 500);
   };
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentIndex((prev) => (prev === testimonials.length - 3 ? 0 : prev + 1));
     setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [currentIndex, handleNext]);
+  };
 
   return (
     <section id="testimonials" className="py-20 bg-stone-50">
-      <div className="container px-4 mx-auto">
-        <div className="max-w-xl mx-auto mb-12 text-center">
-          <h2 className="mb-4 text-2xl font-medium">Words from Those Who Appreciate Authentic Craft</h2>
+      <div className="container mx-auto px-4">
+        <div className="max-w-xl mx-auto text-center mb-12">
+          <h2 className="text-2xl font-medium mb-4">Words from Those Who Appreciate Authentic Craft</h2>
           <p className="text-gray-600">Discover why fashion enthusiasts and collectors choose Tenunalus MAURA for authentic Indonesian weaving</p>
         </div>
 
         <div className="relative">
           <div className="overflow-hidden">
-            <div
+            <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
             >
               {testimonials.map((testimonial) => (
-                <div
+                <div 
                   key={testimonial.id}
-                  className="flex-shrink-0 w-full px-4 md:w-1/3"
+                  className="w-full md:w-1/3 flex-shrink-0 px-4"
                 >
-                  <div className="p-6 transition-shadow duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
+                  <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex flex-col items-center text-center">
-                      <img
-                        src={testimonial.image}
+                      <img 
+                        src={testimonial.image} 
                         alt={testimonial.name}
-                        className="object-cover w-20 h-20 mb-4 rounded-full"
+                        className="w-20 h-20 rounded-full object-cover mb-4"
                       />
                       <div className="flex mb-4">
                         {[...Array(5)].map((_, i) => (
@@ -99,7 +99,7 @@ const TestimonialCarousel: React.FC = () => {
                           </svg>
                         ))}
                       </div>
-                      <p className="mb-4 text-gray-600">{testimonial.text}</p>
+                      <p className="text-gray-600 mb-4">{testimonial.text}</p>
                       <h3 className="font-medium">{testimonial.name}</h3>
                       <p className="text-sm text-gray-500">{testimonial.role}</p>
                     </div>
@@ -109,15 +109,15 @@ const TestimonialCarousel: React.FC = () => {
             </div>
           </div>
 
-          <button
+          <button 
             onClick={handlePrev}
-            className="absolute left-0 p-2 transition-shadow -translate-x-4 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 hover:shadow-lg"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
           >
             <ChevronLeft size={24} />
           </button>
-          <button
+          <button 
             onClick={handleNext}
-            className="absolute right-0 p-2 transition-shadow translate-x-4 -translate-y-1/2 bg-white rounded-full shadow-md top-1/2 hover:shadow-lg"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
           >
             <ChevronRight size={24} />
           </button>
@@ -127,8 +127,9 @@ const TestimonialCarousel: React.FC = () => {
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentIndex === i ? 'bg-amber-700' : 'bg-gray-300'
-                  }`}
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  currentIndex === i ? 'bg-amber-700' : 'bg-gray-300'
+                }`}
               />
             ))}
           </div>

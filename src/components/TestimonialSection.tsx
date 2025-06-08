@@ -31,33 +31,33 @@ const testimonials: Testimonial[] = [
 const TestimonialSection: React.FC = () => {
   return (
     <section className="py-16 bg-stone-50">
-      <div className="container px-4 mx-auto md:px-8">
-        <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="mb-3 font-serif text-2xl font-medium md:text-3xl">What Our Customers Say</h2>
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-serif font-medium mb-3">What Our Customers Say</h2>
           <p className="text-gray-600">Hear from those who have brought our textiles into their homes and lives</p>
         </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map(testimonial => (
-            <div key={testimonial.id} className="p-6 bg-white rounded-lg shadow-sm">
+            <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-center mb-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309" />
+                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309"/>
                 </svg>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309" />
+                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309"/>
                 </svg>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309" />
+                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309"/>
                 </svg>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309" />
+                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309"/>
                 </svg>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309" />
+                  <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#B45309"/>
                 </svg>
               </div>
-              <p className="mb-4 italic text-gray-700">{testimonial.text}</p>
+              <p className="text-gray-700 mb-4 italic">{testimonial.text}</p>
               <div>
                 <p className="font-medium">{testimonial.name}</p>
                 <p className="text-sm text-gray-500">{testimonial.location}</p>
