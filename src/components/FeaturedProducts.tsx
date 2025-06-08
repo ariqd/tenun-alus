@@ -251,27 +251,27 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-      <div className="aspect-square overflow-hidden">
-        <img 
-          src={product.image} 
+    <div className="overflow-hidden transition-shadow duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
+      <div className="overflow-hidden aspect-square">
+        <img
+          src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
         />
       </div>
-      
+
       <div className="p-6">
         <div className="mb-4">
-          <p className="text-sm text-amber-700 mb-2">{product.category}</p>
-          <h3 className="text-xl font-medium mb-2">{product.name}</h3>
+          <p className="mb-2 text-sm text-amber-700">{product.category}</p>
+          <h3 className="mb-2 text-xl font-medium">{product.name}</h3>
           <p className="text-2xl font-medium text-gray-900">${product.price.toFixed(2)}</p>
         </div>
 
         <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden'}`}>
           <p className="text-gray-600">{product.description}</p>
-          
+
           <div>
-            <h4 className="font-medium mb-2">Dimensions:</h4>
+            <h4 className="mb-2 font-medium">Dimensions:</h4>
             <ul className="text-sm text-gray-600">
               {product.dimensions.map((dim, index) => (
                 <li key={index}>{dim}</li>
@@ -280,7 +280,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">Colors:</h4>
+            <h4 className="mb-2 font-medium">Colors:</h4>
             <ul className="text-sm text-gray-600">
               {product.colors.map((color, index) => (
                 <li key={index}>{color}</li>
@@ -289,17 +289,17 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">Weaving Technique:</h4>
+            <h4 className="mb-2 font-medium">Weaving Technique:</h4>
             <p className="text-sm text-gray-600">{product.technique}</p>
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">Production Time:</h4>
+            <h4 className="mb-2 font-medium">Production Time:</h4>
             <p className="text-sm text-gray-600">{product.productionTime}</p>
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">Care Instructions:</h4>
+            <h4 className="mb-2 font-medium">Care Instructions:</h4>
             <ul className="text-sm text-gray-600 list-disc list-inside">
               {product.careInstructions.map((instruction, index) => (
                 <li key={index}>{instruction}</li>
@@ -310,7 +310,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-4 text-amber-700 hover:text-amber-800 font-medium text-sm flex items-center"
+          className="flex items-center mt-4 text-sm font-medium text-amber-700 hover:text-amber-800"
         >
           {isExpanded ? 'Show less' : 'Show details'}
           <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -324,15 +324,15 @@ const FeaturedProducts: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const filteredProducts = initialProducts.filter(product => 
+  const filteredProducts = initialProducts.filter(product =>
     selectedCategory === "All" || product.category === selectedCategory
   );
 
   return (
     <section id="products" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-xl mx-auto text-center mb-12">
-          <h2 className="text-3xl font-medium mb-4">Product Catalogue</h2>
+      <div className="container px-4 mx-auto">
+        <div className="max-w-xl mx-auto mb-12 text-center">
+          <h2 className="mb-4 text-3xl font-medium">Product Catalogue</h2>
           <p className="text-gray-600">Discover our handcrafted fashion accessories made with authentic Indonesian woven fabrics, each piece showcasing traditional ATBM weaving techniques</p>
         </div>
 
@@ -341,15 +341,15 @@ const FeaturedProducts: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all"
+                className="flex items-center gap-2 px-4 py-2 transition-all bg-white rounded-lg shadow-sm hover:shadow-md"
               >
                 <Filter size={20} className="text-amber-700" />
-                <span>Filter by Category: {selectedCategory}</span>
+                <span>Category: {selectedCategory}</span>
                 <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-10">
+                <div className="absolute left-0 z-10 w-64 py-2 mt-2 bg-white rounded-lg shadow-lg top-full">
                   {categories.map((category) => (
                     <button
                       key={category}
@@ -357,9 +357,8 @@ const FeaturedProducts: React.FC = () => {
                         setSelectedCategory(category);
                         setIsDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 hover:bg-amber-50 transition-colors ${
-                        selectedCategory === category ? 'bg-amber-50 text-amber-700' : 'text-gray-600'
-                      }`}
+                      className={`w-full text-left px-4 py-2 hover:bg-amber-50 transition-colors ${selectedCategory === category ? 'bg-amber-50 text-amber-700' : 'text-gray-600'
+                        }`}
                     >
                       {category}
                     </button>
@@ -372,12 +371,18 @@ const FeaturedProducts: React.FC = () => {
             </p>
           </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {filteredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="py-10 text-center bg-gray-100 rounded-lg">
+            <p className="text-xl text-gray-500">No product in this category</p>
+          </div>
+        )}
       </div>
     </section>
   );
