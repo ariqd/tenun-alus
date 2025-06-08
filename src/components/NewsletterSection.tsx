@@ -1,7 +1,22 @@
 import React from 'react';
 import { MessageCircle, Instagram } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 
 const NewsletterSection: React.FC = () => {
+  const posthog = usePostHog();
+
+  const handleWhatsAppClick = () => {
+    posthog.capture('whatsapp_click', {
+      location: 'newsletter_section'
+    });
+  };
+
+  const handleInstagramClick = () => {
+    posthog.capture('instagram_click', {
+      location: 'newsletter_section'
+    });
+  };
+
   return (
     <section id="contact" className="py-16 bg-gray-50">
       <div className="container px-4 mx-auto">
@@ -16,6 +31,7 @@ const NewsletterSection: React.FC = () => {
               href="https://wa.me/6282116803026?text=Hello!%20I%E2%80%99m%20interested%20in%20Tenun%20Alus%20Maura%E2%80%99s%20collection.%20Could%20you%20share%20more%20info%20and%20how%20to%20order?%20Thank%20you!"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleWhatsAppClick}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white transition-colors bg-gray-900 rounded-full hover:bg-gray-800"
             >
               <MessageCircle size={20} />
@@ -26,6 +42,7 @@ const NewsletterSection: React.FC = () => {
               href="https://instagram.com/tenunalus.indonesia"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleInstagramClick}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-gray-900 transition-colors border-2 border-gray-900 rounded-full hover:bg-gray-900 hover:text-white"
             >
               <Instagram size={20} />
