@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Testimonial {
@@ -44,14 +44,6 @@ const TestimonialCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [currentIndex]);
-
   const handlePrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
@@ -59,12 +51,20 @@ const TestimonialCarousel: React.FC = () => {
     setTimeout(() => setIsAnimating(false), 500);
   };
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentIndex((prev) => (prev === testimonials.length - 3 ? 0 : prev + 1));
     setTimeout(() => setIsAnimating(false), 500);
-  };
+  }, [isAnimating]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [currentIndex, handleNext]);
 
   return (
     <section id="testimonials" className="py-20 bg-stone-50">

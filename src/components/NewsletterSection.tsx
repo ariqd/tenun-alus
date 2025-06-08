@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Instagram, Globe } from 'lucide-react';
+import { MessageCircle, Instagram } from 'lucide-react';
 
 const NewsletterSection: React.FC = () => {
   return (
