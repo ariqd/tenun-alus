@@ -12,11 +12,16 @@ const NewsletterSection: React.FC = () => {
           </p>
 
           <div className="flex flex-col justify-center gap-4 mb-12 sm:flex-row">
-            <button className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white transition-colors bg-gray-900 rounded-full hover:bg-gray-800">
+            <a
+              href="https://wa.me/6282116803026?text=Hello!%20I%E2%80%99m%20interested%20in%20Tenun%20Alus%20Maura%E2%80%99s%20collection.%20Could%20you%20share%20more%20info%20and%20how%20to%20order?%20Thank%20you!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white transition-colors bg-gray-900 rounded-full hover:bg-gray-800"
+            >
               <MessageCircle size={20} />
               <span>Chat Now</span>
               <span className="ml-2 text-sm text-green-400">●</span>
-            </button>
+            </a>
             <a
               href="https://instagram.com/tenunalus.indonesia"
               target="_blank"
@@ -26,25 +31,6 @@ const NewsletterSection: React.FC = () => {
               <Instagram size={20} />
               <span>@tenunalus.indonesia</span>
             </a>
-          </div>
-
-          <div className="p-6 bg-white shadow-sm rounded-xl">
-            <div className="flex items-center justify-center gap-8 text-center">
-              <div>
-                <p className="mb-1 text-2xl font-medium">Global</p>
-                <p className="text-sm text-gray-600">Market Reach</p>
-              </div>
-              <div className="w-px h-12 bg-gray-200"></div>
-              <div>
-                <p className="mb-1 text-2xl font-medium">Cultural</p>
-                <p className="text-sm text-gray-600">Sustainability</p>
-              </div>
-              <div className="w-px h-12 bg-gray-200"></div>
-              <div>
-                <p className="mb-1 text-2xl font-medium">Traditional</p>
-                <p className="text-sm text-gray-600">ATBM Weaving</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

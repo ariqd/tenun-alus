@@ -248,75 +248,113 @@ const categories = [
 ];
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="overflow-hidden transition-shadow duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
-      <div className="overflow-hidden aspect-square">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-        />
-      </div>
-
-      <div className="p-6">
-        <div className="mb-4">
-          <p className="mb-2 text-sm text-amber-700">{product.category}</p>
-          <h3 className="mb-2 text-xl font-medium">{product.name}</h3>
-          <p className="text-2xl font-medium text-gray-900">${product.price.toFixed(2)}</p>
+    <>
+      <div className="overflow-hidden transition-shadow duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
+        <div className="overflow-hidden aspect-square">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+          />
         </div>
 
-        <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden'}`}>
-          <p className="text-gray-600">{product.description}</p>
-
-          <div>
-            <h4 className="mb-2 font-medium">Dimensions:</h4>
-            <ul className="text-sm text-gray-600">
-              {product.dimensions.map((dim, index) => (
-                <li key={index}>{dim}</li>
-              ))}
-            </ul>
+        <div className="p-6">
+          <div className="mb-4">
+            <p className="mb-2 text-sm text-amber-700">{product.category}</p>
+            <h3 className="mb-2 text-xl font-medium">{product.name}</h3>
+            <p className="text-2xl font-medium text-gray-900">${product.price.toFixed(2)}</p>
           </div>
 
-          <div>
-            <h4 className="mb-2 font-medium">Colors:</h4>
-            <ul className="text-sm text-gray-600">
-              {product.colors.map((color, index) => (
-                <li key={index}>{color}</li>
-              ))}
-            </ul>
-          </div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center px-3 py-2 mt-4 text-xs font-medium text-white rounded-lg hover:bg-amber-700 bg-amber-600"
+          >
+            Show details
+            {/* <ChevronDown className={`ml-1 h-4 w-4`} /> */}
+          </button>
+        </div>
+      </div>
 
-          <div>
-            <h4 className="mb-2 font-medium">Weaving Technique:</h4>
-            <p className="text-sm text-gray-600">{product.technique}</p>
-          </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="p-8 bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex items-start justify-between mb-6">
+              <h2 className="text-2xl font-semibold">{product.name}</h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-          <div>
-            <h4 className="mb-2 font-medium">Production Time:</h4>
-            <p className="text-sm text-gray-600">{product.productionTime}</p>
-          </div>
+            <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="object-cover w-full rounded-lg aspect-square"
+              />
+              <div>
+                <p className="mb-2 text-sm text-amber-700">{product.category}</p>
+                <p className="mb-4 text-3xl font-bold text-gray-900">${product.price.toFixed(2)}</p>
+                <p className="mb-4 text-gray-700">{product.description}</p>
+              </div>
+            </div>
 
-          <div>
-            <h4 className="mb-2 font-medium">Care Instructions:</h4>
-            <ul className="text-sm text-gray-600 list-disc list-inside">
-              {product.careInstructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-            </ul>
+            <div className="space-y-4">
+              <div>
+                <h4 className="mb-2 text-lg font-medium">Dimensions:</h4>
+                <ul className="text-sm text-gray-600">
+                  {product.dimensions.map((dim, index) => (
+                    <li key={index}>{dim}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-lg font-medium">Colors:</h4>
+                <ul className="text-sm text-gray-600">
+                  {product.colors.map((color, index) => (
+                    <li key={index}>{color}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-lg font-medium">Weaving Technique:</h4>
+                <p className="text-sm text-gray-600">{product.technique}</p>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-lg font-medium">Production Time:</h4>
+                <p className="text-sm text-gray-600">{product.productionTime}</p>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-lg font-medium">Care Instructions:</h4>
+                <ul className="text-sm text-gray-600 list-disc list-inside">
+                  {product.careInstructions.map((instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="w-full px-4 py-2 mt-8 font-medium text-white rounded-lg bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+            >
+              Close
+            </button>
           </div>
         </div>
-
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center mt-4 text-sm font-medium text-amber-700 hover:text-amber-800"
-        >
-          {isExpanded ? 'Show less' : 'Show details'}
-          <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
-        </button>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
