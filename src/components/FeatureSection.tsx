@@ -15,12 +15,12 @@ const FeatureSection: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://www.tenunalus.com/cdn/shop/files/pallavi-biru-kulit.jpg?v=1712915464"
+              src="/products/Talina -  (3).jpg"
               alt="Traditional Indonesian weaving process"
               className="w-full rounded-xl"
             />
             <img
-              src="https://www.tenunalus.com/cdn/shop/files/pallavi-orange-kulit.jpg?v=1712915465&width=1445"
+              src="/products/hat- (2).jpg"
               alt="Authentic Endek Bali fabric"
               className="w-full mt-8 rounded-xl"
             />
