@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import logo from '../../public/logo.png';
+import { usePostHog } from 'posthog-js/react';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const posthog = usePostHog();
 
   const menuItems = [
     { label: 'Home', href: '#home' },
@@ -16,8 +18,16 @@ const Navbar: React.FC = () => {
     { label: 'Contact', href: '#contact' }
   ];
 
-  const handleMenuClick = (href: string) => {
+  const handleMenuClick = (href: string, label: string, isMobile: boolean) => {
     setIsMenuOpen(false);
+
+
+    // Track navigation click
+    posthog.capture('navigation_click', {
+      section: label,
+      href: href,
+      device: isMobile ? 'mobile' : 'desktop'
+    });
 
     // Smooth scroll to section
     const element = document.querySelector(href);
@@ -53,7 +63,7 @@ const Navbar: React.FC = () => {
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
-                handleMenuClick('#home');
+                handleMenuClick('#home', 'Home', false);
               }}
               className="text-3xl font-medium transition-colors text-amber-700 hover:text-amber-800"
             >
@@ -75,7 +85,7 @@ const Navbar: React.FC = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleMenuClick(item.href);
+                  handleMenuClick(item.href, item.label, false);
                 }}
                 className="text-sm font-medium text-gray-600 transition-colors cursor-pointer hover:text-amber-700"
               >
@@ -94,7 +104,7 @@ const Navbar: React.FC = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleMenuClick(item.href);
+                  handleMenuClick(item.href, item.label, true);
                 }}
                 className="block px-4 py-2 text-gray-600 transition-colors rounded-lg cursor-pointer hover:bg-amber-50 hover:text-amber-700"
               >

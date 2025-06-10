@@ -1,6 +1,21 @@
 import React from 'react';
+import { usePostHog } from 'posthog-js/react';
 
 const Footer: React.FC = () => {
+  const posthog = usePostHog();
+
+  const handleWhatsAppClick = () => {
+    posthog.capture('whatsapp_click', {
+      location: 'footer'
+    });
+  };
+
+  const handleInstagramClick = () => {
+    posthog.capture('instagram_click', {
+      location: 'footer'
+    });
+  };
+
   return (
     <footer className="py-16 border-t">
       <div className="container px-4 mx-auto">
@@ -37,6 +52,7 @@ const Footer: React.FC = () => {
                       href="https://wa.me/6282116803026?text=Hello!%20I%E2%80%99m%20interested%20in%20Tenun%20Alus%20Maura%E2%80%99s%20collection.%20Could%20you%20share%20more%20info%20and%20how%20to%20order?%20Thank%20you!"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleWhatsAppClick}
                       className="transition-colors hover:text-amber-700">
                       WhatsApp
                     </a>
@@ -44,7 +60,9 @@ const Footer: React.FC = () => {
                   <li>
                     <a href="https://instagram.com/tenunalus.indonesia"
                       target="_blank"
-                      rel="noopener noreferrer" className="transition-colors hover:text-amber-700">
+                      rel="noopener noreferrer"
+                      onClick={handleInstagramClick}
+                      className="transition-colors hover:text-amber-700">
                       Instagram
                     </a>
                   </li>
