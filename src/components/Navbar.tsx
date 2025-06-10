@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '../../public/logo.png';
 import { usePostHog } from 'posthog-js/react';
 
 const Navbar: React.FC = () => {
@@ -19,6 +20,7 @@ const Navbar: React.FC = () => {
 
   const handleMenuClick = (href: string, label: string, isMobile: boolean) => {
     setIsMenuOpen(false);
+
 
     // Track navigation click
     posthog.capture('navigation_click', {
@@ -65,7 +67,8 @@ const Navbar: React.FC = () => {
               }}
               className="text-3xl font-medium transition-colors text-amber-700 hover:text-amber-800"
             >
-              Tenunalus MAURA
+              {/* Tenunalus MAURA */}
+              <img src={logo} alt="Tenunalus MAURA" className="h-[150px]" />
             </a>
           </div>
 
